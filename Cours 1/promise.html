@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise</title>
+</head>
+
+<body>
+    <p>Exemple de Promise</p>
+    <script>
+        let promesse = new Promise((resolve, reject)=> {
+            let add = 5 + 5;
+            if(add ==11) {
+                resolve('OK!');
+            } else {
+                reject('Problème');
+            }
+        })
+
+        promesse.then((message)=>{
+            console.log("Bon: Le message est : " + message);
+        }).catch((message)=>{
+            console.log("Problème: Le message est : " + message);
+        })
+    </script>
+</body>
+
+</html>
