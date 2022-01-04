@@ -10,7 +10,11 @@
     <p id="langue">Langage du fureteur</p>
     <script>
         let langage = window.navigator.language;
-        document.getElementById("langue").innerHTML = "Langage: " + langage;
+        let plateforme = window.navigator.platform;
+        let appNom = window.navigator.appName;
+        document.getElementById("langue").innerHTML = "Langage: " + langage 
+            + "<br>Plateforme:  " + plateforme
+            + "<br>Nom app.:  " + appNom;
     </script>
 </body>
 </html>
