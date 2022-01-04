@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objet Navigator (geolocation)</title>
+</head>
+<body>
+    <h1>Votre position</h1>
+    <p id="position">Calcul...</p>
+    <script>
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else { 
+          document.getElementById("position").innerHTML =
+          "Impossible d'utiliser cette option";
+        }
+        
+        function showPosition(position) {
+          document.getElementById("position").innerHTML =
+          "Latitude: " + position.coords.latitude + "<br>" +
+          "Longitude: " + position.coords.longitude;
+        }
+        </script>
+</body>
+</html>
