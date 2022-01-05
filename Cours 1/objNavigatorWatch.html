@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objet Navigator (watchPosition</title>
+</head>
+
+<body onload="getLocation()">
+    <h1>Votre position</h1>
+    <p id="position"></p>
+    <script>
+        const elementPosition = document.getElementById("position");
+
+        function affichePosition(position){
+            elementPosition.innerHTML = `Lat: ${position.coords.latitude} <br>Long: ${position.coords.longitude}`;
+        }
+
+        function afficheErreur(err){
+            console.log(err);
+        }
+
+        options = {
+            timeout: 5000,
+            enableHighAccuracy:false
+        }
+
+        function getLocation(){
+            if(navigator.geolocation){
+                navigator.geolocation.watchPosition(affichePosition, afficheErreur, options);
+            } else {
+                elementPosition.innerHTML = "Impossible d'utiliser la géolocalisation";
+            }
+        }
+    </script>
+</body>
+
+</html>
