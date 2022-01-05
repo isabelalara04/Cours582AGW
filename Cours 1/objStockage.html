@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objet de stockage</title>
+</head>
+
+<body>
+    <label>Entrer une valeur de couleur HTML (hexadecimale):</label>
+    <input id='couleurFond' value='FFFFFF'>
+
+    <script>
+        const elementHtml = document.querySelector('html');
+        const couleurFond = document.getElementById("couleurFond");
+
+        if (localStorage.getItem('couleur')){
+            changeCouleur();
+        }else{
+            setCouleur();
+        }
+
+        function setCouleur(){
+            localStorage.setItem('couleur', couleurFond.value);
+            changeCouleur();
+        }
+
+        function changeCouleur(){
+            let codeCouleur = localStorage.getItem('couleur');
+            elementHtml.style.backgroundColor = "#" + codeCouleur;
+            couleurFond.value = codeCouleur;
+        }
+
+        couleurFond.addEventListener('change', setCouleur);
+    </script>
+
+</body>
+
+</html>
