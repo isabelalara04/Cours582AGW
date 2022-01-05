@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For each</title>
+    <title>Objet de stockage</title>
 </head>
+
 <body>
-    <p id="resultat"></p>
+    <label>Entrer une valeur de couleur HTML (hexadecimale):</label>
+    <input id='couleurFond' value='FFFFFF'>
+
     <script>
-        const para = document.getElementById("resultat");
-    let somme = 0;
-     nombres = [1,2,3,4]
+        let nom  = "Martin";
+        console.log(nom);
+        let nom2 = new String("Martin2");
+        let nombre = new Number(10);
+        console.log(nombre);
+        console.log(nom);
 
-     nombres.forEach(element => {
-         somme = somme+element;
-         console.log(somme);
-     });
-
-    
+        console.log(Math.sqrt(nombre));
 
     </script>
+
 </body>
+
 </html>
