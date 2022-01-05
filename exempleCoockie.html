@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemple Cookie</title>
+</head>
+<body>
+    <p id="visite"></p>
+    <script>
+        const paragraphe = document.getElementById("visite");
+        //document.cookie = "usager=; expires = Thu, 01 Jan 1970 00:00:00 UTC";
+        let laDate = new Date()
+        document.cookie = "date=" + laDate.toLocaleString(); 
+        paragraphe.innerHTML = `Votre dernière visite était le : ${document.cookie.split("=")[1]}`;
+    </script>
+</body>
+</html>
