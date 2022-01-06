@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memoire</title>
+    </head>
+<body>
+  
+    <script>
+        let list1 = [1,2,3,4];
+        let list2 = list1;
+        console.log(list1);
+        console.log(list2);
+        list1.push(100);
+        console.log(list1);
+        console.log(list2);
+        list2.push(101);
+        console.log(list1);
+        console.log(list2);
+
+        let s1 = new String("A");
+        let s2 = s1;
+        s1 = "B";
+        console.log(s1);
+        console.log(s2);
+    </script>
+</body>
+</html>
