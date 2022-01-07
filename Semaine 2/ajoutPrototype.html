@@ -10,14 +10,16 @@
     <script>
         let s = new String("Martin");
         //console.log(s);
+        
 
-        Object.defineProperty(String.prototype, 'affMartin', {
+
+        Object.defineProperty(String.prototype, 'length', {
             value:function(){
                 return "Martin"
             }
         })
 
-        console.log(s.affMartin());
+        console.log(s.length());
     </script>
 </body>
 </html>

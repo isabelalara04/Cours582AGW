@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Décomposition</title>
+</head>
+
+<body>
+    <h1>Décomposition ou spread operator</h1>
+    <script>
+        
+        let n1 = 10;
+        let n2 = 20;
+        let n3 = 30;
+
+        function somme(...uneListe){
+            let resultat = 0;
+            for(nombre of uneListe){
+                resultat += nombre;
+            }
+            return resultat;
+        }
+
+        console.log(somme(n1, n3, 50));
+
+    </script>
+
+</body>
+
+</html>
