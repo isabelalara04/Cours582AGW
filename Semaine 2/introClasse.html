@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes: introduction</title>
+</head>
+<body>
+    <script>
+        function Personne(nom, prenom, courriel){
+            this.nom = nom;
+            this.prenom = prenom;
+            this.courriel = courriel;
+
+            this.identification = function(){
+                console.log("Le nom est " + this.nom + ", le prénom est " + this.prenom);
+            }
+        }
+
+        let personne1 = new Personne("Couture", "Martin", "aaa@aaa.ca");
+        console.log(typeof(personne1));
+        personne1.identification();
+        personne1.nom = "Laplante";
+        personne1.identification();
+    </script>
+</body>
+</html>
