@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype2</title>
+</head>
+<body>
+    <script>
+
+        let mot = "Allô";
+        console.log(mot.length);
+        String.prototype.exclamation = function(){
+            return this + "!";
+        }
+        
+
+        console.log(mot.exclamation());
+
+    </script>
+</body>
+</html>

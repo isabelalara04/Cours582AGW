@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classes: suite</title>
+    <title>Polymorphisme</title>
 </head>
 <body>
     <script>
@@ -13,22 +13,27 @@
                 this.nom = nom;
                 this.prenom = prenom;
             }
-            
-            identification(){
-                console.log(`Le nom est ${this.nom}, le prénom est ${this.prenom}`);
+        
+            toString(){
+                return `Le nom est ${this.nom} le prénom est ${this.prenom}`;
             }
 
-            parle(message){
-                return `Le message à dire est : ${message}`;
+        }
+
+        class Chat{
+            constructor(nom){
+                this.nom = nom;
             }
 
-            addition(nombre1, nombre2){
-                return nombre1 + nombre2;
+            toString(){
+                return `Le nom du chat est ${this.nom}`;
             }
         }
 
         let p1 = new Personne("Couture", "Martin");
-        let p2 = new Personne("Robert", "Martine");
+        console.log(p1.toString());
+        let c1 = new Chat("Mimine");
+        console.log(c1.toString());
 
     </script>
 </body>
