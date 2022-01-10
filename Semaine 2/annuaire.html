@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annuaire</title>
+</head>
+<body>
+    <script>
+    /*const p1 = ["Couture", "Martin", " ", "123-123-4567", ];
+    const p2 = ["Martine", "Robert", "mrobert@aaa.ca", "555-555-5555"];*/
+
+    let p1 = {
+        prenom:"Martin",
+        nom: "Couture", 
+        age: 34, 
+        tel:["555-555-5555", "123-456-7890"],     
+        parle:  function (phrase){
+                   console.log(phrase);
+                }
+    };
+    
+    let p2 = {
+        nom: "Robert",
+        prenom:"Martine",
+        age: 44, 
+        tel:"", 
+        parle:  function (phrase){
+                   console.log(phrase);
+                }
+     };
+
+    p2.parle("Allô2!");
+
+    //an = [p1,p2];
+
+
+
+    /*for(let i=0; i<an.length; i++){
+        console.log(an[i].prenom);
+    }*/
+    
+
+    
+    
+</script>
+</body>
+</html>
