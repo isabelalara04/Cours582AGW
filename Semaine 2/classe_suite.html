@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes: introduction</title>
+</head>
+<body>
+    <script>
+        class Personne{
+            constructor(nom, prenom){
+                this.nom = nom;
+                this.prenom = prenom;
+            }
+            
+            identification(){
+                console.log(`Le nom est ${this.nom}, le prénom est ${this.prenom}`);
+            }
+
+            parle(message){
+                return `Le message à dire est : ${message}`;
+            }
+
+            addition(nombre1, nombre2){
+                return nombre1 + nombre2;
+            }
+        }
+
+        let p1 = new Personne("Couture", "Martin");
+        let p2 = new Personne("Robert", "Martine");
+        p2.nom = "Laplante";
+
+        an = [p1, p2];
+        an[1].identification();
+    </script>
+</body>
+</html>
