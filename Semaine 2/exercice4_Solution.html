@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solution Exercice 4</title>
+</head>
+
+<body>
+    <script>
+        class Personne{
+            constructor(prenom, nom){
+                this.prenom = prenom;
+                this.nom = nom;
+            }
+            toString(){
+                return `Le prénom est ${this.prenom} et le nom est ${this.nom}\n`;
+            }
+        }
+
+        class Usager extends Personne{
+            constructor(prenom, nom, numero){
+                super(prenom, nom);
+                this.numero = numero;
+            }
+        }
+
+        class Employe extends Personne{
+            constructor(prenom, nom, numero, bibliotheque){
+                super(prenom, nom);
+                this.numero = numero;
+                this.bibliotheque = bibliotheque;
+            }
+        }
+
+        class Bibliotheque{
+            constructor(nom){
+                this.nom = nom;
+                this.employes = [];
+                this.usagers = [];
+                this.documents = [];
+            }
+            toString(){
+                return `Le nom est ${this.nom} et le nombre d'usagers est ${this.usagers.length}`;
+            }
+            addUsager(usager){
+                this.usagers.push(usager);
+            }
+            addEmploye(employe){
+                this.employes.push(employe);
+            }
+            addDocument(document){
+                this.documents.push(document);
+            }
+            afficheUsagers(){
+                let message = "";
+                for(let i = 0; i<this.usagers.length;i++){
+                    message += this.usagers[i];
+                }
+                return message;
+            }
+            afficheEmployes(){
+                let message = "";
+                for(let i = 0; i<this.employes.length;i++){
+                    message += this.employes[i] ;
+                }
+                return message;
+            }
+            afficheDocuments(){
+                let message = "";
+                for(let i = 0; i<this.documents.length;i++){
+                    message += this.documents[i] ;
+                }
+                return message;
+            }
+        }
+
+        class Document{
+            constructor(titre, idDocument){
+                this.titre = titre;
+                this.idDocument = idDocument;
+            }
+            toString(){
+                return `Le titre est ${this.titre}`;
+            }
+        }
+
+        class Livre extends Document{
+            constructor(titre, idDocument, nbPages){
+                super(titre, idDocument);
+                this.nbPages = nbPages;
+            }
+        }
+
+        class Disque extends Document{
+            constructor(titre, idDocument, duree){
+                super(titre, idDocument);
+                this.duree = duree;
+            }
+        }
+
+
+        let maBiblio = new Bibliotheque("Super biblio!");
+        
+        let e1 = new Employe("Robert", "Langdon", "001");
+        let e2 = new Employe("Félix", "LeChat", "002");
+
+        maBiblio.addEmploye(e1);
+        maBiblio.addEmploye(e2);
+
+        let u1 = new Usager("Martin", "Couture", "111");
+        let u2 = new Usager("Martine", "Robert", "222");
+
+        maBiblio.addUsager(u1);
+        maBiblio.addUsager(u2);
+
+        console.log(maBiblio.toString());
+        console.log(maBiblio.afficheEmployes());
+        console.log(maBiblio.afficheUsagers());
+
+        let l = new Livre('Mécano', "1");
+        maBiblio.addDocument(l);
+        console.log(maBiblio.afficheDocuments());
+    </script>
+</body>
+
+</html>
