@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solution Exercice 2</title>
+</head>
+
+<body>
+    <script>
+        class Personne {
+            constructor(prenom, nom, age) {
+                this.prenom = prenom;
+                this.nom = nom;
+                this.age = age;
+            }
+
+            marche() {
+                return "Marche";
+            }
+
+            toString() {
+                return `Le prénom est ${this.prenom}, le nom est ${this.nom} et l'age est ${this.age}`;
+            }
+        }
+
+        class Espion extends Personne {
+            constructor(prenom, nom, age, nomCode) {
+                super(prenom, nom, age);
+                this.nomCode = nomCode;
+            }
+
+            toString() {
+                return `Le prénom est ${this.prenom}, le nom est ${this.nom}, l'age est ${this.age} et le code est ${this.nomCode}`;
+            }
+
+            seCache() {
+                return "Je suis caché!";
+            }
+        }
+
+        class Vendeur extends Personne {
+            constructor(prenom, nom, age, numero, compagnie) {
+                super(prenom, nom, age);
+                this.numero = numero;
+                this.compagnie = compagnie;
+            }
+
+            vend() {
+                return "J'ai vendu!";
+            }
+        }
+
+        class Enseignant extends Personne {
+            constructor(prenom, nom, age, numero, ecole, departement) {
+                super(prenom, nom, age);
+                this.numero = numero;
+                this.ecole = ecole;
+                this.departement = departement;
+            }
+
+            enseigne(){
+                return 'Enseignement!';
+            }
+        }
+
+
+        let e = new Espion("James", "Bond", 48, "007");
+        console.log(e.seCache());
+        console.log(e.toString())
+
+        let v = new Vendeur("Léon", "DesMaisons", 52, "123", "Sutton");
+        console.log(v.toString());
+        console.log(v.vend());
+
+        let p = new Enseignant("Julie", "Tremblay", 22, "456", "Cegep Limoilou", "Informatique");
+        console.log(p.toString());
+        console.log(p.enseigne());
+
+    </script>
+</body>
+
+</html>
