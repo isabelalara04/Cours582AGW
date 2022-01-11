@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Héritage</title>
+</head>
+
+<body>
+    <script>
+        class Animal{
+            constructor(race, couleur, nbPattes){
+                this.race = race;
+                this.couleur = couleur;
+                this.nbPattes = nbPattes;
+            }
+
+            crie(){
+                return "à définir";
+            }
+
+            seDeplacer(){
+                return "avance"
+            }
+
+        }
+
+        class Chat extends Animal{
+            constructor (nom, race, couleur, nbPattes){
+                super(race, couleur, nbPattes);
+                this.nom = nom;
+            }
+
+            crie(){
+                return "Miaou!";
+            }
+            
+        }
+
+        class Canard extends Animal{
+            constructor (race, couleur, nbPattes){
+                super(race, couleur, nbPattes);
+            }
+
+        }
+
+        let monChat = new Chat("Mimine", "Sphynx", "rose", 4);
+        console.log(monChat.nbPattes);
+        let leCabard = new Canard("x", "blanc", 2);
+        console.log(leCabard.crie());
+
+    </script>
+</body>
+
+</html>
