@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solution Exercice 3</title>
+</head>
+
+<body>
+    <script>
+        class Forme{
+            constructor(type){
+                this.type = type;
+            }
+
+            toString(){
+                return `Le type est ${this.type}`;
+            }
+
+            aire(){
+                return "Rien pour l'instant";
+            }
+
+            perimetre(){
+                return "Rien pour l'instant";
+            }
+        }
+
+
+        class Polygone extends Forme{
+            constructor(type, nombreCote){
+                super(type);
+                this.nombreCote = nombreCote;
+            }
+        }
+
+        class Rectangle extends Forme{
+            constructor(type, nombreCote, larg, long){
+                super(type, nombreCote);
+                this.larg  = larg;
+                this.long = long;
+            }
+
+            toString(){
+                return `Le type est ${this.type}, la largeur est ${this.larg} et la longueur est ${this.long}`;
+            }
+
+            aire(){
+                return this.long * this.larg;
+            }
+
+            perimetre(){
+                return (2*this.larg) + (2*this.long);
+            }
+        }
+
+        class Cercle extends Forme{
+            constructor(type, rayon){
+                super(type);
+                this.rayon = rayon;
+            }
+            
+            aire(){
+                return Math.PI*Math.pow(this.rayon, 2);
+            }
+
+            perimetre(){
+                return 2*Math.PI*this.rayon;
+            }
+        
+
+        }
+
+
+        let r = new Rectangle("Rectangle", 4, 10, 20);
+        console.log(r.toString());
+        console.log(r.perimetre());
+        console.log(r.aire());
+
+        let c = new Cercle("Cercle", 4);
+        console.log(c.aire());
+
+    </script>
+</body>
+
+</html>
