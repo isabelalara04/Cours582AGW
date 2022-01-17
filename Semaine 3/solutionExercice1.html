@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Première carte</title>
+    <title>Solution Exercice 1</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin="" />
@@ -28,7 +28,7 @@
     </div>
 
     <script>
-        let maCarte = L.map('map').setView([0, 0], 3);
+        let maCarte = L.map('map').setView([20, 0], 3);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -36,8 +36,19 @@
 
         L.marker([46.829848, -71.227125]).addTo(maCarte)
             .bindPopup('Cégep Limoilou')
-            .openPopup();
-            
+
+        L.marker([48.858032, 2.294248]).addTo(maCarte)
+            .bindPopup('Tour Eiffel')
+
+        L.marker([27.174787, 78.042084]).addTo(maCarte)
+            .bindPopup('Taj Mahal')
+
+        L.marker([-33.856645, 151.215050]).addTo(maCarte)
+            .bindPopup('Sydney (Opéra)')
+
+        L.marker([-2.155998, -55.497114]).addTo(maCarte)
+            .bindPopup('Amazone')
+
     </script>
 </body>
 
