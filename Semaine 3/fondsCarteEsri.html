@@ -15,9 +15,23 @@
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
 
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@3.0.4/dist/esri-leaflet.js"
+        integrity="sha512-oUArlxr7VpoY7f/dd3ZdUL7FGOvS79nXVVQhxlg6ij4Fhdc4QID43LUFRs7abwHNJ0EYWijiN5LP2ZRR2PY4hQ=="
+        crossorigin=""></script>
+
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
         #map {
-            height: 800px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
         }
     </style>
 </head>
@@ -28,16 +42,14 @@
     </div>
 
     <script>
-        let maCarte = L.map('map').setView([0, 0], 3);
+        let maCarte = L.map('map').setView([46.829848, -71.227125], 8);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(maCarte);
+        L.esri.basemapLayer("NationalGeographic").addTo(maCarte);
 
         L.marker([46.829848, -71.227125]).addTo(maCarte)
             .bindPopup('Cégep Limoilou')
             .openPopup();
-            
+
     </script>
 </body>
 
