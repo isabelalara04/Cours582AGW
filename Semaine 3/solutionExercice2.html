@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solution géolocalisation</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+    <style>
+        #map {
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map">
+
+    </div>
+    <h1>Géolocalisation</h1>
+    <p id="AffichePosition">Cliquer sur le bouton pour activer votre géolocalisation</p>
+    <button id="activerGeolocalisation">Trouve moi!</button>
+
+    <script>
+        //Pour la carte
+        let maCarte = L.map('map').setView([0, 0], 3);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(maCarte);
+
+        //Pour les controles. 
+        const bouton = document.getElementById("activerGeolocalisation");
+        const pPosition = document.getElementById("AffichePosition");
+
+        bouton.addEventListener('click', getPosition);
+
+        function getPosition() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(affichePosition, afficheErreur);
+            } else {
+                pPosition.innerHTML = "Problème!"
+            }
+        }
+
+        function affichePosition(position) {
+            let lat = position.coords.latitude;
+            let long = position.coords.longitude;
+            let precision = position.coords.accuracy;
+
+            pPosition.innerHTML = "Lat: " + lat + "<br>Long: " + long  + "<br>Précision: " + precision;
+            L.marker([lat, long]).addTo(maCarte)
+            .bindPopup('Me voici')
+            .openPopup();
+            
+            maCarte.flyTo(L.latLng(lat, long),15);
+
+        }
+
+        function afficheErreur(erreur) {
+            pPosition.innerHTML = "Problème!";
+            /*switch(erreur.code){
+                case erreur.PERMISSION_DENIED: 
+                    pPosition.innerHTML = "Pas de permission!";
+            }*/
+
+        }
+    </script>
+</body>
+
+</html>
