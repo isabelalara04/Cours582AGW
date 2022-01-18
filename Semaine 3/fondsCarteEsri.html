@@ -44,8 +44,8 @@
     <script>
         let maCarte = L.map('map').setView([46.829848, -71.227125], 8);
 
-        L.esri.basemapLayer("NationalGeographic").addTo(maCarte);
-
+        L.esri.basemapLayer("Imagery").addTo(maCarte);
+        L.esri.basemapLayer("ImageryLabels").addTo(maCarte);
         L.marker([46.829848, -71.227125]).addTo(maCarte)
             .bindPopup('Cégep Limoilou')
             .openPopup();
