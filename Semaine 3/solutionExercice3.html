@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solution exercice 3</title>
+    <title>Solution exercice 3
+
+    </title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin="" />
@@ -19,37 +21,76 @@
     <script src="https://unpkg.com/esri-leaflet@3.0.4/dist/esri-leaflet.js"
         integrity="sha512-oUArlxr7VpoY7f/dd3ZdUL7FGOvS79nXVVQhxlg6ij4Fhdc4QID43LUFRs7abwHNJ0EYWijiN5LP2ZRR2PY4hQ=="
         crossorigin=""></script>
-
     <style>
         body {
-            margin: 0;
-            padding: 0;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #entete {
+            height: 200px;
+            margin-left: 20px;
         }
 
         #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
+            height: 500px;
+        }
+
+        button {
+            padding: 5px;
+            margin: 5px;
         }
     </style>
 </head>
 
 <body>
-    <div id="map">
-
+    <div id="entete">
+        <h1>Suivi de la position</h1>
+        <button id="demarrer">Démarrer</button>
+        <button id="arreter">Arrêter</button>
     </div>
+    <div id="map"></div>
 
     <script>
-        let maCarte = L.map('map').setView([46.829848, -71.227125], 8);
-
+        //Affichage de la carte
+        let maCarte = L.map('map').setView([0, 0], 3);
         L.esri.basemapLayer("Imagery").addTo(maCarte);
         L.esri.basemapLayer("ImageryLabels").addTo(maCarte);
-        L.marker([46.829848, -71.227125]).addTo(maCarte)
-            .bindPopup('Cégep Limoilou')
-            .openPopup();
 
+        //Liens vers les boutons
+        document.getElementById('demarrer').addEventListener('click', suiviOn);
+        document.getElementById('arreter').addEventListener('click', suiviOff);
+
+        //Icons
+        var personneIcon = L.icon({
+            iconUrl: 'neutral.png',
+            iconSize: [42, 42],
+            iconAnchor: [21, 42]
+        });
+
+        //Groupe
+        let groupeMarqueurs = L.layerGroup().addTo(maCarte);
+
+        //Fonctions
+        function suiviOn() {
+            maCarte.locate({ watch: true, setView: true });
+            maCarte.on('locationfound', trouve);
+            maCarte.on('locationerror', erreur);
+        }
+
+        function suiviOff() {
+            maCarte.stopLocate();
+            groupeMarqueurs.clearLayers();
+        }
+
+        function trouve(e) {
+            groupeMarqueurs.clearLayers();
+            let marqueur = L.marker(e.latlng, {icon:personneIcon}).addTo(groupeMarqueurs);
+        }
+
+        function erreur(error){
+            alert("Oups!");
+        }
     </script>
 </body>
 
