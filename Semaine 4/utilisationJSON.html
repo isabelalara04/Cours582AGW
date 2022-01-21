@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilisation JSON</title>
+</head>
+<body>
+    <h1>Utilisation JSON</h1>
+    <p id="infos"></p>
+
+    <script>
+        const personne = '{"nom":"Couture", "prenom": "Martin", "ville":"Québec"}';
+        const objPersonne = JSON.parse(personne);
+
+        document.getElementById("infos").innerHTML = objPersonne.nom;
+    </script>
+</body>
+</html>

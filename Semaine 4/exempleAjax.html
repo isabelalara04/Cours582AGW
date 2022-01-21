@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemple Ajax</title>
+</head>
+
+<body>
+    <button id="ajaxButton">Ajout données</button>
+    <div id="infos"></div>
+    <script>
+        const lienJson = 'listeLivres.json';
+
+        const bouton = document.getElementById("ajaxButton");
+        const divInfos = document.getElementById("infos");
+
+        bouton.addEventListener('click', faireRequete);
+
+        const httpRequest = new XMLHttpRequest();
+
+        function faireRequete() {
+            if (!httpRequest) {
+                alert("Impossible de trouver l'objet XMLRequest!");
+                return false;
+            }
+            httpRequest.onreadystatechange = traitementDonnees;
+            httpRequest.open('GET', lienJson);
+            httpRequest.send();
+        }
+
+        function traitementDonnees() {
+            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                if (httpRequest.status === 200) {
+                    let donnees = JSON.parse(this.responseText);
+                    afficheDonnees(donnees);
+                } else {
+                    alert("Problème!");
+                }
+            }
+        }
+
+        function afficheDonnees(donnees) {
+            donnees.forEach(function (objet) {
+                const paragraphe = document.createElement("p");
+                paragraphe.innerHTML = objet.titre + ", " + objet.pages + " pages";
+                divInfos.appendChild(paragraphe);
+            })
+        }
+
+
+
+    </script>
+</body>
+
+</html>
