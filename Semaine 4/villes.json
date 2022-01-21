@@ -1,0 +1,33 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [  
+                    46.810498,
+                    -71.221016
+                ]
+            },
+            "properties": {
+                "nom": "Québec", 
+                "population": 600000
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ 
+                    45.544803,
+                    -73.584459
+                ]
+            },
+            "properties": {
+                "nom": "Montréal", 
+                "population": 1200000
+            }
+        }
+    ]
+}
