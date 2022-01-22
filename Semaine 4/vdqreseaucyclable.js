@@ -1,5 +1,4 @@
-{
-	"name" : "D:/fmeserver2017///resources/data/\\DO\\PUBLICATION\\vdq-reseaucyclable.geojson",
+let reseauCyclable = {
 	"type" : "FeatureCollection",
 	"features" : [
 		{
