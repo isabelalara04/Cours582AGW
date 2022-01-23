@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Couche GeoJSON</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@3.0.4/dist/esri-leaflet.js"
+        integrity="sha512-oUArlxr7VpoY7f/dd3ZdUL7FGOvS79nXVVQhxlg6ij4Fhdc4QID43LUFRs7abwHNJ0EYWijiN5LP2ZRR2PY4hQ=="
+        crossorigin=""></script>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #map {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        #selectedFeatures {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 1em;
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <div id="selectedFeatures" class="leaflet-bar map-text">
+        Cliquez sur la carte pour info.
+    </div>
+
+    <script>
+        let maCarte = L.map('map').setView([46.83, -71.3], 3);
+        L.esri.basemapLayer("Gray").addTo(maCarte);
+        L.esri.basemapLayer("GrayLabels").addTo(maCarte);
+
+        const coucheOuragans = L.esri.dynamicMapLayer({
+            url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Hurricanes/MapServer/"
+        }).addTo(maCarte);
+
+        const pane = document.getElementById("selectedFeatures");
+
+        let identifiedFeature;
+        maCarte.on('click', function (e) {
+            pane.innerHTML = 'Chargement...';
+            if (identifiedFeature) {
+                maCarte.removeLayer(identifiedFeature);
+            }
+
+            coucheOuragans
+                .identify()
+                .layers('visible:1') // Seulement les "track"
+                .on(maCarte)
+                .at(e.latlng)
+                .run(function (error, featureCollection) {
+                    if (error) {
+                        return;
+                    }
+                    // Identification
+                    if (featureCollection.features.length > 0) {
+                        identifiedFeature = L.geoJSON(featureCollection.features[0]).addTo(maCarte);
+                        var description = 'Le nom est ' +
+                            featureCollection.features[0].properties.NAME +
+                            ' ( ' +
+                            featureCollection.features[0].properties.YEAR + ' ) ';
+                        pane.innerHTML = description;
+                    } else {
+                        pane.innerHTML = 'Rien à afficher!';
+                    }
+                });
+        });
+    </script>
+</body>
+
+</html>
