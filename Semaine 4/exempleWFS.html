@@ -39,15 +39,13 @@
     <div id="map"></div>
 
     <script>
-        let maCarte = L.map('map').setView([46.83, -71.3], 3);
+        let maCarte = L.map('map').setView([48, -1], 8);
         L.esri.basemapLayer("Gray").addTo(maCarte);
         L.esri.basemapLayer("GrayLabels").addTo(maCarte);
 
-        //URL: https://geobretagne.fr/geoserver/ows?service=wfs&version=1.0.0&request=GetCapabilities
-
         let geoJsonUrl = "https://geobretagne.fr/geoserver/ows?service=wfs&version=1.0.0&request=GetFeature&typeName=dreal_b:l_aires_attraction_villes_communes&format=text/javascript&outputFormat=application/json&srsname=EPSG:4326&format_options=callback:loadGeoJson";
 
-        var xhttp = new XMLHttpRequest();
+        let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 afficheGeoJSON(xhttp.responseText);
@@ -56,22 +54,18 @@
         xhttp.open("GET", geoJsonUrl);
         xhttp.send();
 
-
         function afficheGeoJSON(donnees) {
             L.geoJSON(JSON.parse(donnees), {
                 style: function (feature) {
-                    return {
-                        stroke: false,
-                        fillColor: 'green',
-                        fillOpacity: 1
-                    };
-                },
+                    return { color: "green" };
+                }, 
                 onEachFeature: function (feature, layer) {
-                    popupOptions = { maxWidth: 200 };
-                    layer.bindPopup(feature.properties.LIBCATE
-                        , popupOptions);
+                    layer.bindPopup(feature.properties.LIBAAV2)
                 }
-            }).addTo(maCarte)
+
+            }).addTo(maCarte);
+
+
         }
     </script>
 </body>
