@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WFS</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@3.0.4/dist/esri-leaflet.js"
+        integrity="sha512-oUArlxr7VpoY7f/dd3ZdUL7FGOvS79nXVVQhxlg6ij4Fhdc4QID43LUFRs7abwHNJ0EYWijiN5LP2ZRR2PY4hQ=="
+        crossorigin=""></script>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #map {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <script>
+        let maCarte = L.map('map').setView([46.83, -71.3], 3);
+        L.esri.basemapLayer("Gray").addTo(maCarte);
+        L.esri.basemapLayer("GrayLabels").addTo(maCarte);
+
+        //URL: https://geobretagne.fr/geoserver/ows?service=wfs&version=1.0.0&request=GetCapabilities
+
+        let geoJsonUrl = "https://geobretagne.fr/geoserver/ows?service=wfs&version=1.0.0&request=GetFeature&typeName=dreal_b:l_aires_attraction_villes_communes&format=text/javascript&outputFormat=application/json&srsname=EPSG:4326&format_options=callback:loadGeoJson";
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                afficheGeoJSON(xhttp.responseText);
+            }
+        };
+        xhttp.open("GET", geoJsonUrl);
+        xhttp.send();
+
+
+        function afficheGeoJSON(donnees) {
+            L.geoJSON(JSON.parse(donnees), {
+                style: function (feature) {
+                    return {
+                        stroke: false,
+                        fillColor: 'green',
+                        fillOpacity: 1
+                    };
+                },
+                onEachFeature: function (feature, layer) {
+                    popupOptions = { maxWidth: 200 };
+                    layer.bindPopup(feature.properties.LIBCATE
+                        , popupOptions);
+                }
+            }).addTo(maCarte)
+        }
+    </script>
+</body>
+
+</html>
